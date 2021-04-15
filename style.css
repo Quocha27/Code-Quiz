@@ -32,3 +32,17 @@ text-align: center;
 background-color: rgb(158, 89, 223);
 border-radius: 3px;
 }
+
+.btn:hover {
+    cursor: crosshair;
+    box-shadow: chartreuse;
+    transition: transform 150ms;
+    transform: matrix(12);
+}
+
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+
+}
