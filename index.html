@@ -8,13 +8,42 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div id="start-quiz">
+  <header>
+    <div id="viewHighScores"><a href="#">View Highscores</a></div>
+    <div id="timeR">Time: 0</div>
+  </header>
+
+  <main>
+    <section id="Instructions">
       <h1>Coding Quiz Challenge</h1>
+      <h2>Instructions</h2>
       <h3>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</h3>
-      </div>
-      <a href="/game.html" class="btn">Start Quiz</a>
-    </div>
-  </div>
+      <button id="startBtn">Start Quiz</button>
+    </section>
+
+    <section id="questions"></section>
+
+    <section id="results">
+      <h3>Quiz Complete</h3>
+      <p id="score"></p>
+    </section>
+    
+    <section>
+      <p class="initialsPrompt">Enter your initials here:</p>
+        <input id="initials2" class="initials" type="text"> 
+        <button id="button2" class="submitBtn">Submit</button>
+    </section>
+
+    <div id="correct"></div>
+
+    <section id="highScores">
+      <h3 class="Highscores"></h3>
+        <ul id="stats">
+        </ul>
+        <button class="homeBtn">Homepage</button>
+    </section>
+
+  </main>
+  <script src="yes.js"></script>
 </body>
 </html>
