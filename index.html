@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding Quiz</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <div id="viewHighScores"><a href="#">View Highscores</a></div>
-    <div id="timeR">Time: 0</div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coding Quiz</title>
 
-  <main>
-    <section id="Instructions">
-      <h1>Coding Quiz Challenge</h1>
-      <h2>Instructions</h2>
-      <h3>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</h3>
-      <button id="startBtn">Start Quiz</button>
-    </section>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
 
-    <section id="questions"></section>
+  <body>
+    <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
-    <section id="results">
-      <h3>Quiz Complete</h3>
-      <p id="score"></p>
-    </section>
-    
-    <section>
-      <p class="initialsPrompt">Enter your initials here:</p>
-        <input id="initials2" class="initials" type="text"> 
-        <button id="button2" class="submitBtn">Submit</button>
-    </section>
+    <div class="timer">Time: <span id="time">0</span></div>
 
-    <div id="correct"></div>
+    <div class="wrapper">
+      <div id="start-screen" class="start">
+        <h1>Coding Quiz Challenge</h1>
+        <p>
+          Try to answer the following code-related questions within the time
+          limit. Keep in mind that incorrect answers will penalize your
+          score/time by ten seconds!
+        </p>
+        <button id="start">Start Quiz</button>
+      </div>
 
-    <section id="highScores">
-      <h3 class="Highscores"></h3>
-        <ul id="stats">
-        </ul>
-        <button class="homeBtn">Homepage</button>
-    </section>
+      <div id="questions" class="hide">
+        <h2 id="question-title"></h2>
+        <div id="choices" class="choices"></div>
+      </div>
 
-  </main>
-  <script src="yes.js"></script>
-</body>
+      <div id="end-screen" class="hide">
+        <h2>All done!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+          Enter initials: <input type="text" id="initials" max="3" />
+          <button id="submit">Submit</button>
+        </p>
+      </div>
+
+      <div id="feedback" class="feedback hide"></div>
+    </div>
+
+    <script src="demo.js"></script>
+    <script src="questions.js"></script>
+  </body>
 </html>

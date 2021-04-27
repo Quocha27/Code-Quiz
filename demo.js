@@ -1,100 +1,163 @@
-// WRITE YOUR CODE HERE
-var time = 10
-var timeInterval
-var q1a1 =document.createElement("button"):
-var q1a2 =document.createElement("button"):
-var q1a3 =document.createElement("button"):
-var q1a4 =document.createElement("button"):
-var q1a1 =document.createElement("button"):
-var q1a2 =document.createElement("button"):
-var q1a3 =document.createElement("button"):
-var q1a4 =document.createElement("button"):
-var q1a1 =document.createElement("button"):
-var q1a2 =document.createElement("button"):
-var q1a3 =document.createElement("button"):
-var q1a4 =document.createElement("button"):
-var q1a1 =document.createElement("button"):
-var q1a2 =document.createElement("button"):
-var q1a3 =document.createElement("button"):
-var q1a4 =document.createElement("button"):
-var q1a1 =document.createElement("button"):
-var q1a2 =document.createElement("button"):
-var q1a3 =document.createElement("button"):
-var q1a4 =document.createElement("button"):
-function clock(){
+// variables to keep track of quiz state
+var currentQuestionIndex = 0;
+var time = questions.length * 15;
+var timerId;
 
- timeInterval = setInterval(counter, 1000) 
+// variables to reference DOM elements
+var questionsEl = document.getElementById("questions");
+var timerEl = document.getElementById("time");
+var choicesEl = document.getElementById("choices");
+var submitBtn = document.getElementById("submit");
+var startBtn = document.getElementById("start");
+var initialsEl = document.getElementById("initials");
+var feedbackEl = document.getElementById("feedback");
+
+function startQuiz() {
+  // hide start screen
+  var startScreenEl = document.getElementById("start-screen");
+  startScreenEl.setAttribute("class", "hide");
+
+  // un-hide questions section
+  questionsEl.removeAttribute("class");
+
+  // start timer
+  timerId = setInterval(clockTick, 1000);
+
+  // show starting time
+  timerEl.textContent = time;
+
+  getQuestion();
 }
-function counter(){
-    time--
-    console.log(time)
-    if (time == 0) {
-        clearInterval(timeInterval); //stops setInterval from running
-        console.log("game over")
+
+function getQuestion() {
+  // get current question object from array
+  var currentQuestion = questions[currentQuestionIndex];
+
+  // update title with current question
+  var titleEl = document.getElementById("question-title");
+  titleEl.textContent = currentQuestion.title;
+
+  // clear out any old question choices
+  choicesEl.innerHTML = "";
+
+  // loop over choices
+  currentQuestion.choices.forEach(function(choice, i) {
+    // create new button for each choice
+    var choiceNode = document.createElement("button");
+    choiceNode.setAttribute("class", "choice");
+    choiceNode.setAttribute("value", choice);
+
+    choiceNode.textContent = i + 1 + ". " + choice;
+
+    // attach click event listener to each choice
+    choiceNode.onclick = questionClick;
+
+    // display on the page
+    choicesEl.appendChild(choiceNode);
+  });
+}
+
+function questionClick() {
+  // check if user guessed wrong
+  if (this.value !== questions[currentQuestionIndex].answer) {
+    // penalize time
+    time -= 15;
+
+    if (time < 0) {
+      time = 0;
     }
+
+    // display new time on page
+    timerEl.textContent = time;
+
+    feedbackEl.textContent = "Wrong!";
+  } else {
+    // play "right" sound effect
+    sfxRight.play();
+
+    feedbackEl.textContent = "Correct!";
+  }
+
+  // flash right/wrong feedback on page for half a second
+  feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function() {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+
+  // move to next question
+  currentQuestionIndex++;
+
+  // check if we've run out of questions
+  if (currentQuestionIndex === questions.length) {
+    quizEnd();
+  } else {
+    getQuestion();
+  }
 }
-clock(); //calls for function to run.
 
+function quizEnd() {
+  // stop timer
+  clearInterval(timerId);
 
+  // show end screen
+  var endScreenEl = document.getElementById("end-screen");
+  endScreenEl.removeAttribute("class");
 
+  // show final score
+  var finalScoreEl = document.getElementById("final-score");
+  finalScoreEl.textContent = time;
 
-for (var i = 0; i < 5; i++) {
-    console.log(`The current value of i is ${i}`);
+  // hide questions section
+  questionsEl.setAttribute("class", "hide");
 }
 
-var zooAnimals = ["Bears", "Giraffes", "Penguins", "Meerkats"];
+function clockTick() {
+  // update time
+  time--;
+  timerEl.textContent = time;
 
-for (var i = 0; i < zooAnimals.length; i++) {
-    console.log(`I am going to the zoo to see ${zooAnimals[i]}`);
+  // check if user ran out of time
+  if (time <= 0) {
+    quizEnd();
+  }
 }
 
-var newObj = { name: "Quoc" }
-console.log(`Hi my name is ${newObj.name}`)
-var counter = 1
-var questions = [
-    {
-        question: "Commonly used data types DO NOT include:", 
-        answer1: "strings",
-        answer2: "booleans",
-        answer3: "alerts",
-        answer4: "numbers"
-    },
-    {
-    question: "How would you link your javascript to your html?", 
-    answer1: "Send the JS to to the Html page",
-    answer2: "Put the .js file into the CSS file",
-    answer3: "Grab the .js file path and place it into the index.html using <script> "
-    },
-    {
-    question: "The condition in an if/else statement is enclosed within", 
-    answer1: "quotes",
-    answer2: "curly brackets",
-    answer3: "parenthesis",
-    answer4: "square brackets",
-    },
-    {
-    question: "What do you need to run a function", 
-    answer1: "parenthesis and semit colon",
-    answer2: "square brackets",
-    answer3: "back ticks",
-    answer4: "swigly lines",
-    },
-    {
-    question: "Arrays in Javascript can be used to store", 
-    answer1: "numbers and strings",
-    answer2: "in paraenthese within a funtion",
-    answer3: "They are called out in an array",
-    answer4: "all the above",
-    },
-    {
-    question: "What is a useful tool you can use to debug and print out your functions and variables", 
-    answer1: "console.log",
-    answer2: "for loops",
-    answer3: "Github",
-    answer4: "Gitbash",
-    },
-    
-]
-console.log(questions[counter].question)
-console.log(questions[counter].answer1)
-console.log(questions[counter].answer2)
+function saveHighscore() {
+  // get value of input box
+  var initials = initialsEl.value.trim();
+
+  // make sure value wasn't empty
+  if (initials !== "") {
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    // format new score object for current user
+    var newScore = {
+      score: time,
+      initials: initials
+    };
+
+    // save to localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    // redirect to next page
+    window.location.href = "highscores.html";
+  }
+}
+
+function checkForEnter(event) {
+  // "13" represents the enter key
+  if (event.key === "Enter") {
+    saveHighscore();
+  }
+}
+
+// user clicks button to submit initials
+submitBtn.onclick = saveHighscore;
+
+// user clicks button to start quiz
+startBtn.onclick = startQuiz;
+
+initialsEl.onkeyup = checkForEnter;
