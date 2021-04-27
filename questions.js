@@ -6,8 +6,8 @@ var questions = [
     },
     {
     title: "How would you link your javascript to your html?", 
-    choices: ["link the .js file to to the .css page with <style>","Put the .css file into the .html file", "Grab the .js file path and place it into the index.html using <script>"],
-    answer: "Grab the .js file path and place it into the index.html using <script>"
+    choices: ["link the .js file to to the .css page with <style>","Put the .css file into the .html file", "Insert .js file path into the index.html using <script>"],
+    answer: "Insert .js file path into the index.html using <script>"
     },
     {
     title: "The condition in an if/else statement is enclosed within", 

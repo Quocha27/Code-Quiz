@@ -3,8 +3,7 @@
 
  Live Site: https://quocha27.github.io/Code-Quiz/
 
- Build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
-
+ For this weeks assignment I will be creating a functional quiz. This quiz will be similiar to a interview test many developers will take during a job interview. 
 
 
 ## Story
