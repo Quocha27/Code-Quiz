@@ -46,11 +46,11 @@ function getQuestion() {
     buttonEl.textContent = `${i + 1}  ${currentQuestion.choices[i]}`;
     choicesEl.appendChild(buttonEl);
     buttonEl.onclick = userClick;
-  }
+  };
 }
 
 function userClick() {
-if (this.value !==questions[currentQuestionIndex].answer)
+if (this.value !==questions[currentQuestionIndex].answer) {
   // time is 50
   time = time - 10; // time is 40
 
@@ -75,5 +75,4 @@ function endQuiz() {
 
 
 startBtn.onclick = startQuiz;
-
-
+}
