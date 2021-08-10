@@ -70,14 +70,6 @@ if (this.value !==questions[currentQuestionIndex].answer) {
 
 function endQuiz() {
   clearInterval(timerId);
-  var endScreenEl = document.getElementById("end-screen");
-  endScreenEl.removeAttribute("class");
-
-  // show final score
-  var finalScoreEl = document.getElementById("final-score");
-  finalScoreEl.textContent = time;
-
-
 }
 
 
