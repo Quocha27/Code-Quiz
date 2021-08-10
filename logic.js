@@ -77,8 +77,7 @@ function endQuiz() {
   var finalScoreEl = document.getElementById("final-score");
   finalScoreEl.textContent = time;
 
-  // hide questions section
-  questionsEl.setAttribute("class", "hide");
+
 }
 
 
