@@ -50,29 +50,61 @@ function getQuestion() {
 }
 
 function userClick() {
-if (this.value !==questions[currentQuestionIndex].answer) {
-  // time is 50
-  time = time - 10; // time is 40
+  console.log(currentQuestionIndex);
+  if (this.value !== questions[currentQuestionIndex].answer) {
+    // time is 50
+    time = time - 10; // time is 40
 
-  if (time < 0) {
-    time = 0;
-  }
-  timerEl.textContent = time;
-  // currentQuestionIndex is 0 
-  // currentQuestionIndex is 1
-  currentQuestionIndex++;
-  if (currentQuestionIndex === questions.length) {
-    endQuiz();
+    if (time < 0) {
+      time = 0;
+    }
+    timerEl.textContent = time;
+    // currentQuestionIndex is 0 
+    // currentQuestionIndex is 1
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+      endQuiz();
+    } else {
+      getQuestion();
+    }
   } else {
-    getQuestion();
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+      endQuiz();
+    } else {
+      getQuestion();
+    }
   }
+
+  function endQuiz() {
+    clearInterval(timerId);
+    var endScreen = document.getElementById("end-screen");
+    endScreen.removeAttribute("class");
+    var finalScore = document.getElementById("final-score");
+    finalScore.textContent = time;
+    questionsEl.setAttribute("class", "hide");
+  }
+
 }
 
-function endQuiz() {
-  clearInterval(timerId);
-}
+function displayScore() {
+var userInitial = initialsEl.value;
+ // get saved scores from localstorage, or if not any, set to empty array
+ var highscores =
+ JSON.parse(window.localStorage.getItem("highscores")) || [];
 
+// format new score object for current user
+var newScore = {
+ score: time,
+ initials: userInitial
+};
 
-
+// save to localstorage
+highscores.push(newScore);
+window.localStorage.setItem("highscores", JSON.stringify(highscores));
+// redirect to next page
+window.location.href = "highscores.html";
+ }
 startBtn.onclick = startQuiz;
-}
+submitBtn.onclick = displayScore;
+
